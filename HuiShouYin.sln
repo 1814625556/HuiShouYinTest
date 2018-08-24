@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XuLiang", "XuLiang\XuLiang.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NinjectExecrise", "NinjectExecrise\NinjectExecrise.csproj", "{3D4A278B-B359-44B7-A34A-6F206D2AC91D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YuYinShiBie", "YuYinShiBie\YuYinShiBie.csproj", "{D5CEF902-9156-4516-AB55-232A0EF00193}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZhiShiDianCeshi", "ZhiShiDianCeshi\ZhiShiDianCeshi.csproj", "{5028E81B-ADE1-4C0B-927D-7E63024E2284}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{3D4A278B-B359-44B7-A34A-6F206D2AC91D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D4A278B-B359-44B7-A34A-6F206D2AC91D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D4A278B-B359-44B7-A34A-6F206D2AC91D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5CEF902-9156-4516-AB55-232A0EF00193}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5CEF902-9156-4516-AB55-232A0EF00193}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5CEF902-9156-4516-AB55-232A0EF00193}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5CEF902-9156-4516-AB55-232A0EF00193}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5028E81B-ADE1-4C0B-927D-7E63024E2284}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5028E81B-ADE1-4C0B-927D-7E63024E2284}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5028E81B-ADE1-4C0B-927D-7E63024E2284}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5028E81B-ADE1-4C0B-927D-7E63024E2284}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
