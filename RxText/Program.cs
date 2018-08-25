@@ -47,10 +47,15 @@ namespace RxText
                         }
                     });
             }
-
+            /// <summary>
+            /// 这是调用Task.Factory.FromAsync实现的异步调用
+            /// </summary>
+            /// <param name="request"></param>
+            /// <returns></returns>
             public static IObservable<string> DownLoadTask(WebRequest request)
             {
-                return  Task.Factory.FromAsync<WebResponse>(request.BeginGetResponse, request.EndGetResponse, new object(),
+                return  Task.Factory.FromAsync<WebResponse>(request.BeginGetResponse, 
+                    request.EndGetResponse, new object(),
                     TaskCreationOptions.None).ToObservable().Select(res=>
                     {
                         using (var stream = res.GetResponseStream())
