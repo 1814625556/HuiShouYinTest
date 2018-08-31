@@ -22,9 +22,40 @@ namespace RxText
     {
         static void Main(string[] args)
         {
-            
+            //Observable.Interval(TimeSpan.FromMilliseconds(200)).Buffer()
             Console.WriteLine("this is  main funtion");
             Console.ReadKey();
+        }
+        /// <summary>
+        /// defer 等到调用subscribe方法的时候才会执行 defer里面的函数，start直接执行
+        /// </summary>
+        static void TestDeferStart()
+        {
+            var defer = Observable.Defer<int>(() =>
+                {
+                    Console.WriteLine("defer....");
+                    return Observable.Return(1);
+                }
+            );
+            var start = Observable.Start(() =>
+                {
+                    Console.WriteLine("start...");
+                    return 0;
+                }
+            );
+            var normal = Observable.Return(2);
+            start.Subscribe();
+            defer.Subscribe();
+        }
+
+        /// <summary>
+        /// selectMany, 将可观察序列的每个元素投影到可观察序列，并将得到的可观察序列合并为一个可观察序列
+        /// </summary>
+        public static void TestSelectMany()
+        {
+            Observable.Range(1, 3)
+                .SelectMany(x => Observable.Range(10, x))
+                .Subscribe(Console.WriteLine);
         }
         /// <summary>
         /// 每次发出一个对象就会 执行Do方法紧着着执行所有订阅的方法，！！每发出一个都会这样
@@ -80,16 +111,7 @@ namespace RxText
             }).Retry().Subscribe(Console.WriteLine);
         }
 
-        /// <summary>
-        /// selectMany方法测试
-        /// </summary>
-        public static void TestSelectMany()
-        {
-            Observable.Range(1, 3)
-                .SelectMany(x => Observable.Range(10, x))
-                .Subscribe(Console.WriteLine);
-
-        }
+        
 
         public static void TestSelect()
         {
