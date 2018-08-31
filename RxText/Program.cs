@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Forms;
+using FluffIt;
 
 namespace RxText
 {
@@ -21,12 +22,91 @@ namespace RxText
     {
         static void Main(string[] args)
         {
-            var request = WebRequest.Create("https://www.baidu.com/");
-            //WebRequestExtensions.DownloadStringAsync(request).Subscribe(str=>Console.WriteLine(str.Substring(0,10)),e=>Console.WriteLine(e.Message));
-            WebRequestExtensions.DownLoadTask(request).Subscribe(Console.WriteLine,e=>Console.WriteLine(e.Message));
-            //Console.WriteLine(str);
+            
             Console.WriteLine("this is  main funtion");
             Console.ReadKey();
+        }
+        /// <summary>
+        /// 每次发出一个对象就会 执行Do方法紧着着执行所有订阅的方法，！！每发出一个都会这样
+        /// </summary>
+        static void TestSelectNew()
+        {
+            var selectList = Observable.Range(1, 10).Select(i => new
+            {
+                Name = $"aaa{i}",
+                Age = i
+            }).Do(Console.WriteLine);
+            //selectList.Subscribe(Console.WriteLine);
+            selectList.Subscribe(en => Console.WriteLine("welcome to unit..."));
+        }
+
+        /// <summary>
+        /// 可连接-普通Obserable：可连接的Observable的只有当调用Connect()方法的时候才发射
+        /// </summary>
+        public void TestPublishRefCount()
+        {
+            var testObservabel = Observable.Interval(TimeSpan.FromSeconds(1)).Publish();//转化成可连接的Observable
+
+            testObservabel.Subscribe(Console.WriteLine);
+            //testObservabel.Connect();//必须这样才会发射
+            testObservabel.Select(i => new { Name = $"AAA{i}" }).Subscribe(Console.WriteLine);
+            testObservabel.RefCount().Subscribe(i => Console.WriteLine($"SSSS{i}"));//等着最后一个观察者完成才会断开连接
+        }
+
+        /// <summary>
+        /// return 将指定的类型转化成Observable并emit出来
+        /// </summary>
+        static void TestReturn()
+        {
+            List<string> list = new List<string>()
+            {
+                "aa",
+                "bb",
+                "cc",
+                "dd"
+            };
+            //Observable.Interval(TimeSpan.FromMilliseconds(100)).Select(i=>$"aaa{i}").Throttle(TimeSpan.FromSeconds(1)).Subscribe(Console.WriteLine);
+            Observable.Return<List<string>>(list).Subscribe(l => l.ForEach(Console.WriteLine));
+        }
+
+        /// <summary>
+        /// retry:遇到错误返回 从新emit希望不要产生错误。throttle 阀门，当Observable不在emit数据后一段时间将最后产生的Observable发送出去
+        /// </summary>
+        static void RetryThrottleTest()
+        {
+            Observable.Range(1, 10).Throttle(TimeSpan.FromSeconds(1)).Do(i =>
+            {
+                if (i == 5) throw new Exception("i==5");
+            }).Retry().Subscribe(Console.WriteLine);
+        }
+
+        /// <summary>
+        /// selectMany方法测试
+        /// </summary>
+        public static void TestSelectMany()
+        {
+            Observable.Range(1, 3)
+                .SelectMany(x => Observable.Range(10, x))
+                .Subscribe(Console.WriteLine);
+
+        }
+
+        public static void TestSelect()
+        {
+            Observable.Range(1, 3)
+                .Select(x => Enumerable.Range(10, x))
+                .Subscribe(
+                 l=>l.ForEach(Console.WriteLine)
+                );
+
+        }
+
+        public static void TestAsyncDown()
+        {
+            var request = WebRequest.Create("https://www.baidu.com/");
+            //WebRequestExtensions.DownloadStringAsync(request).Subscribe(str=>Console.WriteLine(str.Substring(0,10)),e=>Console.WriteLine(e.Message));
+            WebRequestExtensions.DownLoadTask(request).Subscribe(Console.WriteLine, e => Console.WriteLine(e.Message));
+            //Console.WriteLine(str);
         }
 
         public static class WebRequestExtensions
@@ -164,6 +244,16 @@ namespace RxText
                 x => x + 1,
                 x => x
             );
+        }
+        
+    }
+    public class DisposeCC:IDisposable
+    {
+        public string Name { get; set; }
+
+        public void Dispose()
+        {
+            Console.WriteLine("dispal");
         }
     }
 }

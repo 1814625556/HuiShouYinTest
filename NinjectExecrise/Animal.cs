@@ -38,9 +38,43 @@ namespace NinjectExecrise
 
     public class Tree : IPlant
     {
+        public Tree()
+        {
+            Console.WriteLine("TREE...");
+        }
+
         public void Product(string name)
         {
             Console.WriteLine($"{name} is product....");
+        }
+    }
+
+    public class SumariTreeLazy
+    {
+        readonly Lazy<IPlant> lazyplant;
+        public SumariTreeLazy()
+        {
+            lazyplant = new Lazy<IPlant>(() =>
+            {
+                Console.WriteLine("lazyTest");
+                return new Tree();
+            });
+        }
+
+        public void Do()
+        {
+            var tree = lazyplant.Value;
+            tree.Product("chenchang");
+        }
+    }
+
+    public class SumariTree
+    {
+        public readonly IPlant _plant;
+
+        public SumariTree(IPlant plant)
+        {
+            _plant = plant;
         }
     }
 }

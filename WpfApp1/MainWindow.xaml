@@ -16,6 +16,7 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <Button Click="Btn_Audio" Content="声音测试"></Button>
+        <Button Click="Btn_Audio" Content="声音测试" Margin="45,48,548.333,272.667"></Button>
+        <Button Name="btn_test" Content="测试" Margin="411,48,182.333,272.667"></Button>
     </Grid>
 </Window>

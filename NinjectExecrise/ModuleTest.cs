@@ -13,6 +13,7 @@ namespace NinjectExecrise
         public override void Load()
         {
             Bind<IAnimal>().To<Dog>().WithConstructorArgument("name","jiabao");
+            Bind<IPlant>().To<Tree>();
         }
     }
 }
