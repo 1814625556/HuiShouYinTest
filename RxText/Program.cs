@@ -9,6 +9,7 @@ using System.Reactive;
 using System.Reactive.Concurrency;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
+using System.Reactive.Subjects;
 using System.Reactive.Threading.Tasks;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,10 +23,76 @@ namespace RxText
     {
         static void Main(string[] args)
         {
-            //Observable.Interval(TimeSpan.FromMilliseconds(200)).Buffer()
+            var cc = Observable.Interval(TimeSpan.FromSeconds(1)).Join(Observable.Interval(TimeSpan.FromSeconds(1)), 
+                l => Observable.Timer(TimeSpan.FromSeconds(10)), 
+                r => Observable.Timer(TimeSpan.FromSeconds(3)), 
+                (l, r) =>
+                    {
+                        Console.WriteLine($"left:{l},right{r}");
+                        File.AppendAllText("dd.txt",$"left:{l},right{r}\r\n");
+                        return l + r;
+                    });
+            cc.Subscribe(Console.WriteLine);
+            //Observable.Range(10,5).And(Observable.Range(1,5)).Then((x,y)=>x*y)
             Console.WriteLine("this is  main funtion");
             Console.ReadKey();
         }
+        /// <summary>
+        /// Zip测试
+        /// </summary>
+        static void ZipTest()
+        {
+            Observable.Range(1, 5).Zip(Observable.Range(10, 5), (p1, p2) => p1 * p2).Subscribe(Console.WriteLine);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        static void TestCreate()
+        {
+            GetCreateObservable().Subscribe(Console.WriteLine);
+        }
+
+        /// <summary>
+        /// 测试Subject
+        /// </summary>
+        static void TestSubject()
+        {
+            UsingSubject.Usubject.GetObservable().Subscribe(s =>
+                {
+                    Console.WriteLine($"Name:{s.Name}-----Age:{s.Age}");
+                }
+            );
+
+            UsingSubject.Usubject.Insert();
+        }
+
+        /// <summary>
+        /// Rx中未发现排序，因为时间？
+        /// </summary>
+        static void TestToObservable2()
+        {
+            var input = new[] { 6, 6, 6, 7, 7, 7, 8, 8, 1, 2, 3, 4, 5, 4, 3, 2, 1 };
+            var observableInput = input.OrderBy(x => x).ToObservable();
+            observableInput.Distinct().Select(x => x * 10).Subscribe(Console.WriteLine);
+        }
+
+        /// <summary>
+        /// 类型必须是：IEnumerable<TSource>
+        /// </summary>
+        static void TestToObservable()
+        {
+            var listInt = new List<int>()
+            {
+                1,
+                2,
+                3,
+                4,
+                5
+            };
+            listInt.ToObservable().Subscribe(Console.WriteLine);
+        }
+
         /// <summary>
         /// defer 等到调用subscribe方法的时候才会执行 defer里面的函数，start直接执行
         /// </summary>
@@ -244,7 +311,10 @@ namespace RxText
         {
             return Observable.Interval(TimeSpan.FromMilliseconds(200));
         }
-
+        /// <summary>
+        /// Create方法
+        /// </summary>
+        /// <returns></returns>
         private static IObservable<int> GetCreateObservable()
         {
             return Observable.Create<int>(observer =>
@@ -273,6 +343,7 @@ namespace RxText
     {
         public string Name { get; set; }
 
+       
         public void Dispose()
         {
             Console.WriteLine("dispal");
