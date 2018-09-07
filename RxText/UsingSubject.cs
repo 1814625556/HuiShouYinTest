@@ -8,6 +8,9 @@ using System.Reactive.Subjects;
 
 namespace RxText
 {
+    /// <summary>
+    /// 操作分离，使用教程
+    /// </summary>
     public class UsingSubject
     {
         private Subject<Student> _subject = new Subject<Student>();

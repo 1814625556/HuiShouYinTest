@@ -10,22 +10,8 @@ namespace ZhiShiDianCeshi
     {
         static void Main(string[] args)
         {
-            var s = new S();
         }
     }
 
-    public class S
-    {
-        private string name;
-
-        static S()
-        {
-            Console.WriteLine("static...");
-        }
-
-        //public S()
-        //{
-        //    name = "zhangsna";
-        //}
-    }
+   
 }

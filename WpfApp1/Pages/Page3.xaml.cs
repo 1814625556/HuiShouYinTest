@@ -10,20 +10,30 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfApp1.ClassEntity;
 
-namespace WpfApp1
+namespace WpfApp1.Pages
 {
     /// <summary>
-    /// Window1.xaml 的交互逻辑
+    /// Page3.xaml 的交互逻辑
     /// </summary>
-    public partial class Window1 : Window
+    public partial class Page3 : Page
     {
-        public Window1()
+        public Page3()
         {
             InitializeComponent();
-            DataContext = new Student() {Name = "chenchang", Age = 33};
+            this.DataContext = new Student()
+            {
+                Name = "xiaozhu",
+                Age = 26
+            };
+            //this.stackPanel.DataContext = new Student()
+            //{
+            //    Name = "chenchang",
+            //    Age = 26
+            //};
         }
     }
 }

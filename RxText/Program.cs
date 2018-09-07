@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
@@ -23,20 +24,32 @@ namespace RxText
     {
         static void Main(string[] args)
         {
-            var cc = Observable.Interval(TimeSpan.FromSeconds(1)).Join(Observable.Interval(TimeSpan.FromSeconds(1)), 
-                l => Observable.Timer(TimeSpan.FromSeconds(10)), 
-                r => Observable.Timer(TimeSpan.FromSeconds(3)), 
-                (l, r) =>
-                    {
-                        Console.WriteLine($"left:{l},right{r}");
-                        File.AppendAllText("dd.txt",$"left:{l},right{r}\r\n");
-                        return l + r;
-                    });
-            cc.Subscribe(Console.WriteLine);
+            ObservableCollection<Student> collectionStus = new ObservableCollection<Student>();
+            collectionStus.Subscribe(
+               new AnonymousObserver<Student>(stu=>Console.WriteLine($"{stu.Name}---{stu.Age}"))
+            );
+            collectionStus.Add(new Student(){Name = "zhangsan",Age = 23});
             //Observable.Range(10,5).And(Observable.Range(1,5)).Then((x,y)=>x*y)
             Console.WriteLine("this is  main funtion");
             Console.ReadKey();
         }
+        /// <summary>
+        /// join 测试尚未完成
+        /// </summary>
+        static void TestJoin()
+        {
+            var cc = Observable.Interval(TimeSpan.FromSeconds(1)).Join(Observable.Interval(TimeSpan.FromSeconds(1)),
+                l => Observable.Timer(TimeSpan.FromSeconds(10)),
+                r => Observable.Timer(TimeSpan.FromSeconds(3)),
+                (l, r) =>
+                {
+                    Console.WriteLine($"left:{l},right{r}");
+                    File.AppendAllText("dd.txt", $"left:{l},right{r}\r\n");
+                    return l + r;
+                });
+            cc.Subscribe(Console.WriteLine);
+        }
+
         /// <summary>
         /// Zip测试
         /// </summary>
