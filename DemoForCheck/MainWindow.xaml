@@ -1,0 +1,19 @@
+﻿<Window x:Class="DemoForCheck.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DemoForCheck"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Button Content="检查打印机1" Click="btn_clickPrint" Margin="34,59,687.333,62"></Button>
+        <Button Content="检查打印机2" Margin="135,59,587.333,62" Click="GetAllPrinter2"></Button>
+        <Button Content="检查打印机3" Margin="243,59,479.333,62" Click="GetAllPrinter3"></Button>
+        <TextBlock Grid.Row="1" Name="block_text"></TextBlock>
+    </Grid>
+</Window>

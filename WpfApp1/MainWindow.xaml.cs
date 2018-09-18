@@ -68,7 +68,8 @@ namespace WpfApp1
         {
             return Observable.FromEventPattern<RoutedEventHandler, RoutedEventArgs>(
                     h => h.Invoke,
-                    h => button.Click += h, h => button.Click -= h)
+                    h => button.Click += h, 
+                    h => button.Click -= h)
                 .Select(x => x.EventArgs);
         }
     }
