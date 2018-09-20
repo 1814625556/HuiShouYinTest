@@ -24,15 +24,36 @@ namespace RxText
     {
         static void Main(string[] args)
         {
-            ObservableCollection<Student> collectionStus = new ObservableCollection<Student>();
-            collectionStus.Subscribe(
-               new AnonymousObserver<Student>(stu=>Console.WriteLine($"{stu.Name}---{stu.Age}"))
-            );
-            collectionStus.Add(new Student(){Name = "zhangsan",Age = 23});
-            //Observable.Range(10,5).And(Observable.Range(1,5)).Then((x,y)=>x*y)
+            //Observable.ToObservable()
+            Observable.Range(1, 10)
+                .Do(Console.WriteLine)
+                .Finally(()=>Console.WriteLine("Finally"))
+                .Subscribe();
+
             Console.WriteLine("this is  main funtion");
             Console.ReadKey();
         }
+        /// <summary>
+        /// 在可观察的序列结束的时候调用该方法，比如下面的该方法只会调用一次输出为 1，2，3，4，5，6，7，8，9，10，Finally
+        /// </summary>
+        static void TestFinally()
+        {
+            Observable.Range(1, 10)
+                .Do(Console.WriteLine)
+                .Finally(() => Console.WriteLine("Finally"))
+                .Subscribe();
+        }
+
+        static void ObservableCollectinTest()
+        {
+            ObservableCollection<Student> collectionStus = new ObservableCollection<Student>();
+            collectionStus.Subscribe(
+                new AnonymousObserver<Student>(stu => Console.WriteLine($"{stu.Name}---{stu.Age}"))
+            );
+            collectionStus.Add(new Student() { Name = "zhangsan", Age = 23 });
+            //Observable.Range(10,5).And(Observable.Range(1,5)).Then((x,y)=>x*y)
+        }
+
         /// <summary>
         /// join 测试尚未完成
         /// </summary>

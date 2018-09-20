@@ -74,8 +74,17 @@
     <Compile Include="BindingXmals\DynamicDemo.xaml.cs">
       <DependentUpon>DynamicDemo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BindingXmals\Page1.xaml.cs">
+      <DependentUpon>Page1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BindingXmals\Page2.xaml.cs">
+      <DependentUpon>Page2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="BindingXmals\ResourceDictionaryTest.xaml.cs">
       <DependentUpon>ResourceDictionaryTest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BindingXmals\依赖属性.xaml.cs">
+      <DependentUpon>依赖属性.xaml</DependentUpon>
     </Compile>
     <Compile Include="ClassEntity\Student.cs" />
     <Compile Include="ControlTest\Page1.xaml.cs">
@@ -103,6 +112,10 @@
     <Compile Include="Pages\Page4.xaml.cs">
       <DependentUpon>Page4.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Page5.xaml.cs">
+      <DependentUpon>Page5.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="RxSchedule\MeiMei.xaml.cs">
       <DependentUpon>MeiMei.xaml</DependentUpon>
     </Compile>
@@ -132,7 +145,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="BindingXmals\Page1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BindingXmals\Page2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="BindingXmals\ResourceDictionaryTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BindingXmals\依赖属性.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -181,6 +206,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Page4.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Page5.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -253,6 +282,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Template\TextFile1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="BindingXmals\Color.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

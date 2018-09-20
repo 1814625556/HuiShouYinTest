@@ -32,11 +32,11 @@ namespace WpfApp1.RxSchedule
 
         private void Load()
         {
-            var btn_rxObservable = Observable.FromEventPattern<RoutedEventHandler, RoutedEventArgs>(
+            var btnRxObservable = Observable.FromEventPattern<RoutedEventHandler, RoutedEventArgs>(
                 h => btn_rx.Click += h,
                 h => btn_rx.Click -= h
             ).Select(b => b.EventArgs);
-            btn_rxObservable.Subscribe(e =>
+            btnRxObservable.Subscribe(e =>
             {
                 this.txt_box.Text = e.Source.ToString();
                 this.block_text.Text = "ceshi";
@@ -44,13 +44,19 @@ namespace WpfApp1.RxSchedule
 
             try
             {
+                //ObserveOn:包装源序列，以便在与当前线程关联的调度程序上运行其观察者回调。观察者在指定的线程上面观察Observable 并且执行操作
+                //SubscribeOn:包装源序列，以便在指定的调度程序上运行其订阅和取消订阅逻辑。在指定的线程上面创建 Observable
                 Thread thread = Thread.CurrentThread;
+
                 //Observable.Interval(TimeSpan.FromMilliseconds(200)).ObserveOnDispatcher().Do(i => this.txt_box.Text = i.ToString()).Subscribe();
-                Observable.Interval(TimeSpan.FromMilliseconds(200)).SubscribeOn(Dispatcher.FromThread(thread)).Do(i => this.txt_box.Text = i.ToString()).Select(
-                    x => x).Do(i=>this.txt_box2.Text=i.ToString()).
-                    Subscribe(
-                    _=>this.block_text.Text=$"{_}"
-                    );
+
+                //Observable.Interval(TimeSpan.FromMilliseconds(200)).ObserveOn(Dispatcher.FromThread(thread)).Do(i => this.txt_box.Text = i.ToString()).Select(
+                //    x => x).Do(i=>this.txt_box2.Text=i.ToString()).
+                //    Subscribe(
+                //    _=>this.block_text.Text=$"{_}"
+                //    );
+
+                Observable.Interval(TimeSpan.FromMilliseconds(200)).ObserveOn(Dispatcher.FromThread(thread)).Subscribe(i => this.txt_box2.Text = i.ToString());
             }
             catch (Exception e)
             {
