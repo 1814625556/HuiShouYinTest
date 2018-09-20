@@ -1,0 +1,26 @@
+﻿<Page x:Class="WpfTest2.Zindex.ZIndexTest"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:mainpage="clr-namespace:WpfTest2.MainPages"
+      xmlns:local="clr-namespace:WpfTest2.Zindex"
+      mc:Ignorable="d" 
+      Title="ZIndexTest">
+
+    <Grid Width="320" Height="720">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <ContentControl Name="Page" Panel.ZIndex="10" Width="320" Height="300">
+            <Border Background="AliceBlue">
+                <Frame NavigationUIVisibility="Hidden" x:Name="Frame">
+                    <Frame.Content>
+                        <mainpage:Mainpage/>
+                    </Frame.Content>
+                </Frame>
+            </Border>
+        </ContentControl>
+    </Grid>
+</Page>

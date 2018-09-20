@@ -52,7 +52,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="MainPages\Mainpage.xaml.cs">
+      <DependentUpon>Mainpage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Zindex\ZIndexTest.xaml.cs">
+      <DependentUpon>ZIndexTest.xaml</DependentUpon>
+    </Compile>
     <Page Include="BindData\DataContextTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainPages\Mainpage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -77,6 +87,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\Dictionary2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Zindex\ZIndexTest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

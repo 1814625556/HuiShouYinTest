@@ -13,6 +13,7 @@
         </Grid>-->
         
         <!--<Button Content="{Binding Name}" Padding="5" Margin="5"></Button>-->
+        
         <Border BorderThickness="3" BorderBrush="Red">
             <Button>
                 <Button.Template>
@@ -31,6 +32,7 @@
         </Border>
         
     </DataTemplate>
+    <!--这是button按钮的模板-->
     <ControlTemplate x:Key="BtnTemplate1" TargetType="Button">
         <Border Width="100" Height="100" BorderBrush="Red" BorderThickness="4">
             <Grid>
