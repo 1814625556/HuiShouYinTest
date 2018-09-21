@@ -22,9 +22,10 @@
                 </Frame>
             </Border>
         </ContentControl>
-        <ContentControl Grid.Row="0" Name="PopUp" Panel.ZIndex="20" Width="320" Height="320">
-            <Ellipse Height="40" Width="200" Fill="Yellow"></Ellipse>
+        <ContentControl Grid.Row="0" Name="PopUp" Panel.ZIndex="15" Width="320" Height="320">
+            
         </ContentControl>
+        <Button Content="导航" FontSize="30" Grid.Row="1" Click="BtnDaoHangClick"></Button>
     </Grid>
     <!--明天继续  导航页面的开发-->
 </Window>
