@@ -9,8 +9,6 @@ namespace WpfTest2.Entitys
 {
     public class Person : INotifyPropertyChanged
     {
-
-        
         public string Name { get; set; }
         public int Age { get; set; }
         public Hobby hobby { get; set; }

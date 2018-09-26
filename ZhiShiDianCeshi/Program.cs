@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace ZhiShiDianCeshi
 {
@@ -10,8 +11,25 @@ namespace ZhiShiDianCeshi
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(nameof(Animal));
+            //CardWork cd = new CardWork(){CardName = "chenchang",Description = "ceshiyongli"};
+            //Console.WriteLine();
+            Teacher teacher = new Teacher()
+            {
+                Name = "CHENCHANG",
+                Age = 22,
+            };
+            Console.WriteLine("Main ThreadId: "+Thread.CurrentThread.ManagedThreadId);
+            teacher.peoChanged += ProChange;
+            teacher.Name = "meimei";
             Console.ReadKey();
+        }
+
+        public static string ProChange(string name)
+        {
+            Thread.Sleep(100);
+            Console.WriteLine("ProChange ThreadId: " + Thread.CurrentThread.ManagedThreadId);
+            Console.WriteLine(name);
+            return $"NameChanged:{name}";
         }
     }
 
@@ -47,6 +65,21 @@ namespace ZhiShiDianCeshi
             base.Run();
             Console.WriteLine("Dog is running ......");
         }
+    }
+
+    public class CardWork
+    {
+        public string CardName { get; set; }
+        public string Description { get; set; }
+        public string Hobby { get; set; }
+        public string this[string name] => SayName(name).FirstOrDefault();
+
+        public IEnumerable<string> SayName(string name)
+        {
+            Console.WriteLine(name);
+            return new List<string>();
+        }
+
     }
 
 
