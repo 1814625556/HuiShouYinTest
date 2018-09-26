@@ -10,10 +10,7 @@ namespace ZhiShiDianCeshi
     {
         static void Main(string[] args)
         {
-            var _animal = new Dog();
-            //_animal.Run();
-            //_animal.Eat();
-            _animal.Sing();
+            Console.WriteLine(nameof(Animal));
             Console.ReadKey();
         }
     }

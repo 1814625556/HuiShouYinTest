@@ -34,7 +34,7 @@
         <Button Content="ChangeInfo" Click="BtnChangePersonInfo" Grid.Row="1" Template="{StaticResource BtnTemplate1}">
             
         </Button>
-        <ListBox Name="ListBox1" Grid.Row="2" ItemTemplate="{StaticResource ListboxTemplate}">
+        <ListBox Name="ListBox1" Grid.Row="2" ItemTemplate="{StaticResource ListboxTemplate2}">
             
         </ListBox>
     </Grid>

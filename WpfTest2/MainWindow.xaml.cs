@@ -45,10 +45,5 @@ namespace WpfTest2
             _ns.Navigate(new Uri("pack://application:,,,/MainPages/Navigation1.xaml"));
         }
 
-        public void RedirectToPage(object sender, NavigationEventArgs e)
-        {
-            
-        }
-
     }
 }

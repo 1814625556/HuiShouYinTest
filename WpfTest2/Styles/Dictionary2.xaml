@@ -32,6 +32,25 @@
         </Border>
         
     </DataTemplate>
+
+    <DataTemplate x:Key="ListboxTemplate2" DataType="vm:Person">
+        <Border BorderThickness="3" BorderBrush="Red">
+            <Button>
+                <Button.Template>
+                    <ControlTemplate TargetType="ButtonBase">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <ContentPresenter Content="{Binding hobby.HobbyName}" Grid.Column="1" />
+                        </Grid>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </Border>
+
+    </DataTemplate>
     <!--这是button按钮的模板-->
     <ControlTemplate x:Key="BtnTemplate1" TargetType="Button">
         <Border Width="100" Height="100" BorderBrush="Red" BorderThickness="4">
