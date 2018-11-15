@@ -13,12 +13,18 @@ namespace ZhiShiDianCeshi
         {
             //CardWork cd = new CardWork(){CardName = "chenchang",Description = "ceshiyongli"};
             //Console.WriteLine();
+            Console.WriteLine(Convert.ToDecimal(0));
+            Console.Read();
+        }
+
+        public void ThreadTest()
+        {
             Teacher teacher = new Teacher()
             {
                 Name = "CHENCHANG",
                 Age = 22,
             };
-            Console.WriteLine("Main ThreadId: "+Thread.CurrentThread.ManagedThreadId);
+            Console.WriteLine("Main ThreadId: " + Thread.CurrentThread.ManagedThreadId);
             teacher.peoChanged += ProChange;
             teacher.Name = "meimei";
             Console.ReadKey();

@@ -1,0 +1,148 @@
+﻿<Window x:Class="WpfApp2.ControlTemplate"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp2"
+        mc:Ignorable="d"
+        Title="ControlTemplate" Height="650" Width="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <TextBox Name="TxtCommon" Width="300" FontSize="20" Height="60" BorderBrush="{x:Null}" Background="Wheat">
+            <TextBox.Template>
+                <ControlTemplate TargetType="TextBoxBase" xmlns:s="clr-namespace:System;assembly=mscorlib">
+                    <Border Name="border"  Background="White" BorderBrush="Black" BorderThickness="1" SnapsToDevicePixels="True">
+                        <Grid>
+                            <Grid.ColumnDefinitions >
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock  FontSize="15" VerticalAlignment="Center" Padding="15,0,0,0" Text="手机号："></TextBlock>
+                            <ScrollViewer Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                         HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" Name="PART_ContentHost"
+                                         Focusable="False" />
+                            <!--<TextBox Grid.Column="1" BorderThickness="0" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                     Visibility="Visible" Name="TxtPhoneCoupon" ></TextBox>-->
+                            <Button Grid.Column="2" Background="White" BorderThickness="0">
+                                <Image Width="30" Height="30" Source="./images/xx.png"></Image>
+                                <Button.Style>
+                                    <Style>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ElementName=TxtCommon,Path=Text}" Value="">
+                                                <Setter Property="Button.Background" Value="Red"></Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="UIElement.IsMouseOver">
+                            <Setter Property="Cursor" Value="IBeam"></Setter>
+                            <Trigger.Value>
+                                <s:Boolean>True</s:Boolean>
+                            </Trigger.Value>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </TextBox.Template>
+        </TextBox>
+        
+        <StackPanel Grid.Row="1" Grid.RowSpan="2">
+            <Border Width="300">
+                <StackPanel Orientation="Horizontal"
+                HorizontalAlignment="Center">
+                    <StackPanel Margin="10">
+                        <Label HorizontalAlignment="Left">Cursor Type</Label>
+                        <ComboBox Width="100"
+                  SelectionChanged="CursorTypeChanged"
+                  HorizontalAlignment="Left"
+                  Name="CursorSelector">
+                            <ComboBoxItem Content="AppStarting" />
+                            <ComboBoxItem Content="ArrowCD" />
+                            <ComboBoxItem Content="Arrow" />
+                            <ComboBoxItem Content="Cross" />
+                            <ComboBoxItem Content="HandCursor" />
+                            <ComboBoxItem Content="Help" />
+                            <ComboBoxItem Content="IBeam" />
+                            <ComboBoxItem Content="No" />
+                            <ComboBoxItem Content="None" />
+                            <ComboBoxItem Content="Pen" />
+                            <ComboBoxItem Content="ScrollSE" />
+                            <ComboBoxItem Content="ScrollWE" />
+                            <ComboBoxItem Content="SizeAll" />
+                            <ComboBoxItem Content="SizeNESW" />
+                            <ComboBoxItem Content="SizeNS" />
+                            <ComboBoxItem Content="SizeNWSE" />
+                            <ComboBoxItem Content="SizeWE" />
+                            <ComboBoxItem Content="UpArrow" />
+                            <ComboBoxItem Content="WaitCursor" />
+                            <ComboBoxItem Content="Custom" />
+                        </ComboBox>
+                    </StackPanel>
+                    <!-- The user can select different cursor types using this ComboBox -->
+                    <StackPanel Margin="10">
+                        <Label HorizontalAlignment="Left">Scope of Cursor</Label>
+                        <StackPanel>
+                            <RadioButton Name="rbScopeElement" IsChecked="True"
+                       Checked="CursorScopeSelected">Display Area Only</RadioButton>
+                            <RadioButton Name="rbScopeApplication"
+                       Checked="CursorScopeSelected">Entire Appliation</RadioButton>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+            <!-- When the mouse pointer is over this Border -->
+            <!-- the selected cursor type is shown -->
+            <Border Name="DisplayArea" Height="250" Width="400"
+          Margin="20" Background="AliceBlue">
+                <Label HorizontalAlignment="Center">
+                    Move Mouse Pointer Over This Area
+                </Label>
+            </Border>
+        </StackPanel>
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Border Margin="10,0,10,0" BorderThickness="1" BorderBrush="Cyan">
+                <Grid Background="White">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="60"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBox BorderThickness="0" Text="手机号" IsEnabled="False" FontSize="16" VerticalAlignment="Center"></TextBox>
+                    <TextBox Name="PhoneNum" Grid.Column="1" FontSize="18" VerticalAlignment="Center" HorizontalContentAlignment="Center" BorderThickness="0" 
+                             ></TextBox>
+                    <TextBlock Grid.Column="1" Text="请输入手机号" TextAlignment="Right" FontSize="14" Foreground="Gray">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="HorizontalAlignment" Value="Right"/>
+                                <Setter Property="IsHitTestVisible" Value="False"/>
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Text,ElementName=PhoneNum}" Value="">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                </Grid>
+            </Border>
+            
+        </Grid>
+    </Grid>
+</Window>

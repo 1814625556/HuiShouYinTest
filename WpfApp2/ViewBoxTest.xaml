@@ -1,0 +1,56 @@
+﻿<Window x:Class="WpfApp2.ViewBoxTest"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp2"
+        mc:Ignorable="d" Loaded="Window_Loaded"
+        Title="ViewBoxTest" Height="450" Width="800">
+    <Grid>
+
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="250"/>
+
+            <RowDefinition Height="auto"/>
+
+            <RowDefinition Height="73*"/>
+
+        </Grid.RowDefinitions>
+
+        <Viewbox Stretch="Fill" Grid.Row="0" Name="viewBoxTest">
+
+            <TextBox Text="通过调查发现，被阿里打假驱逐的30家售假商家中，竟有12家转战到了京东上。" />
+
+        </Viewbox>
+
+        <WrapPanel  Grid.Row="2">
+
+            <StackPanel>
+
+
+
+                <TextBlock Height="16" HorizontalAlignment="Left"  VerticalAlignment="Bottom" Width="66" Text="拉伸模式：" TextWrapping="Wrap"/>
+
+                <ComboBox x:Name="cbStretch" Height="21" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="139" SelectionChanged="cbStretch_SelectionChanged"/>
+
+
+
+            </StackPanel>
+
+            <StackPanel>
+
+                <TextBlock Height="16" HorizontalAlignment="Right"  VerticalAlignment="Bottom" Width="56" Text="拉伸方向：" TextWrapping="Wrap"/>
+
+
+
+                <ComboBox x:Name="cbStretchDirection" Height="21" HorizontalAlignment="Right"  VerticalAlignment="Bottom" Width="139" SelectionChanged="cbStretchDirection_SelectionChanged"/>
+
+
+
+            </StackPanel>
+
+        </WrapPanel>
+
+    </Grid>
+</Window>

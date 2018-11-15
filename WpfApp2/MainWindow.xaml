@@ -1,0 +1,60 @@
+﻿<Window x:Class="WpfApp2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp2"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="750" Width="400" FontSize="50">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock TextDecorations="Underline" Text="100"></TextBlock>
+        <Button Click="CancelClick" Grid.Row="1" Cursor="Help" IsCancel="True">
+            <Grid>
+                <Polygon Points="100,25 125,0 200,25 125,50" Fill="LightBlue"></Polygon>
+                <Polygon Points="100,25 75,0 0,25 75,50" Fill="Red"></Polygon>
+            </Grid>
+        </Button>
+        <!--<ScrollViewer Grid.Row="2">
+            <StackPanel>
+                <TextBlock Text="aaaaaaaaaaaa"></TextBlock>
+                <TextBlock Text="aaaaaaaaaaaa"></TextBlock>
+                <TextBlock Text="aaaaaaaaaaaa"></TextBlock>
+                <TextBlock Text="aaaaaaaaaaaa"></TextBlock>
+                <TextBlock Text="aaaaaaaaaaaa"></TextBlock>
+                <TextBlock Text="aaaaaaaaaaaa"></TextBlock>
+                <TextBlock Text="aaaaaaaaaaaa"></TextBlock>
+                <TextBlock Text="aaaaaaaaaaaa"></TextBlock>
+                <TextBlock Text="aaaaaaaaaaaa"></TextBlock>
+            </StackPanel>
+        </ScrollViewer>-->
+        <TextBox Name="txtB" 
+            Text="截至11月6日,第二批中央生态环保督察回头看已完成对湖南、湖北、安徽、山东、四川、陕西、贵州、辽宁、山西以及吉林10省的进驻,且10个督察组已全部进入工作状态。中央环保督察办有关负责人今天透露,第二批
+                 进驻时间仍为一个月。据他介绍,截至目前,10个督察组已受理来电来信举报4132件,并已按要求移交地方处理。" 
+                 Grid.Row="2" TextWrapping="Wrap"></TextBox>
+        <ListBox Grid.Row="3" Name="lst" SelectionChanged="lstchang">
+            <StackPanel>
+                <TextBlock Text="11111"></TextBlock>
+                <Button Content="btn1"></Button>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="2222"></TextBlock>
+                <Button Content="btn2"></Button>
+            </StackPanel>
+        </ListBox>
+
+        <ListBox Grid.Row="4" Name="lst2" SelectionChanged="lstchang">
+            <TextBlock Text="aaa"></TextBlock>
+            <TextBlock Text="bbb"></TextBlock>
+            <TextBlock Text="ddd"></TextBlock>
+            <TextBlock Text="ccc"></TextBlock>
+        </ListBox>
+    </Grid>
+</Window>
