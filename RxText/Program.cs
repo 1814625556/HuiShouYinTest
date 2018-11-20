@@ -24,15 +24,131 @@ namespace RxText
     {
         static void Main(string[] args)
         {
-            //Observable.ToObservable()
-            Observable.Range(1, 10)
-                .Do(Console.WriteLine)
-                .Finally(()=>Console.WriteLine("Finally"))
-                .Subscribe();
 
-            Console.WriteLine("this is  main funtion");
+            //Observable.Range(1, 10).Publish(o =>
+            //{
+            //    return Observable.Range(0, o.Select(i=>i));
+            //}).Subscribe(Console.WriteLine);
+
+
+
+            TestCatch();
+
+            Console.WriteLine("\r\n this is  main funtion");
             Console.ReadKey();
         }
+        /// <summary>
+        /// catch之后直接停止了，但是最后的还是保留下来了
+        /// </summary>
+        static void TestCatch()
+        {
+            Observable.Range(1, 20).Do(x =>
+            {
+                if (x > 4)
+                    throw new Exception("Exception ceshi");
+            }).Do(_=>Console.WriteLine("········")).Catch<int, Exception>(ex =>
+            {
+                Console.WriteLine(ex.Message);
+                return Observable.Return(100);
+            }).Subscribe(Console.WriteLine);
+        }
+
+        /// <summary>
+        /// 直接输出1，2，3···10，当Retry前面发生异常的时候，重试三次
+        /// </summary>
+        static void TestRetry()
+        {
+            Observable.Range(1, 10).Retry(3).Subscribe(Console.WriteLine);
+        }
+
+        /// <summary>
+        /// 只有调用 Observable.Empty()才会为True,序列为空跟 序列包含空值是两个概念
+        /// </summary>
+        static void TestIsEmpty()
+        {
+            Observable.Empty("cc").Do(Console.WriteLine).IsEmpty().Do(o => Console.WriteLine($"{o}"))
+                .Subscribe();
+        }
+
+        /// <summary>
+        /// 指定时间之后发射
+        /// </summary>
+        static void TestTimer()
+        {
+            Observable.Timer(new TimeSpan(0, 0, 5)).Subscribe(Console.WriteLine);//5s后发射出0
+        }
+
+        /// <summary>
+        /// 返回一个可观察的序列，只要新的观察者订阅，就会调用指定的工厂函数。
+        /// </summary>
+        static void TestDefer()
+        {
+            Observable.Defer<string>(() => Observable.Return<string>("chechang...")).Subscribe(Console.WriteLine);
+        }
+
+        /// <summary>
+        /// 会触发 OnError 事件，抛出异常
+        /// </summary>
+        static void TestException()
+        {
+            IObservable<Int32> oper = Observable.Throw<Int32>(new Exception("Test Observable.Throw method..")).Do(_ =>
+            {
+                Console.WriteLine("Observable Do method...");
+            });
+            //Thread.Sleep(1000);
+            oper.Subscribe(o =>
+                {
+                    Console.WriteLine("this is Subscribe method...");
+                },
+                ex => Console.WriteLine($"Exception---> {ex.Message}.."),
+                () => Console.WriteLine("finally ...")
+            );
+        }
+
+        /// <summary>
+        /// 返回一个非终止的可观察序列，可用于表示无限持续时间（例如，当使用反应连接时），相当于没有结束不会执行 OnFinally方法
+        /// </summary>
+        static void TestNever()
+        {
+            IObservable<Int32> oper = Observable.Never<Int32>().Do(_ =>
+            {
+                Console.WriteLine("Observable Do method...");
+            });
+            //Thread.Sleep(1000);
+            oper.Subscribe(o =>
+                {
+                    Console.WriteLine("this is Subscribe method...");
+                },
+                ex => Console.WriteLine("exception..."),
+                () => Console.WriteLine("finally ...")
+            );
+        }
+
+        static void TestEmpty()
+        {
+            // 返回空的Observable序列，只会执行 OnFinally方法
+            IObservable<Int32> oper = Observable.Empty<Int32>().Do(_ =>
+            {
+                Console.WriteLine("Observable Do method...");
+            });
+            //Thread.Sleep(1000);
+            oper.Subscribe(o =>
+                {
+                    Console.WriteLine("this is Subscribe method...");
+                },
+                ex => Console.WriteLine("exception..."),
+                () => Console.WriteLine("finally ...")
+            );
+        }
+
+        /// <summary>
+        /// 这里是这样子：重复发射给定的数据结构，可以在指定的线程上面发射，可以指定发射的次数
+        /// </summary>
+        static void TestRepeat()
+        {
+            Observable.Repeat<string>("Hello", 10).Subscribe(Console.WriteLine);
+        }
+
         /// <summary>
         /// 在可观察的序列结束的时候调用该方法，比如下面的该方法只会调用一次输出为 1，2，3，4，5，6，7，8，9，10，Finally
         /// </summary>

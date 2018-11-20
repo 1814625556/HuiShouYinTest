@@ -13,8 +13,29 @@ namespace ZhiShiDianCeshi
         {
             //CardWork cd = new CardWork(){CardName = "chenchang",Description = "ceshiyongli"};
             //Console.WriteLine();
-            Console.WriteLine(Convert.ToDecimal(0));
+            SelectManySelectTest();
+            //Console.WriteLine(Convert.ToDecimal(0));
             Console.Read();
+        }
+        /// <summary>
+        /// Select() 为每个源值生成一个结果值。因此，总体结果是一个与源集合具有相同元素数目的集合。
+        /// 与之相反，SelectMany() 将生成单一总体结果，其中包含来自每个源值的串联子集合
+        /// </summary>
+        static void SelectManySelectTest()
+        {
+            Console.WriteLine("select-------------");
+            string[] text = { "Albert was here", "Burke slept late", "Connor is happy" };
+            var tokens = text.Select(s => s.Split(' '));
+            foreach (var line in tokens)
+                Console.WriteLine("{0}.", line);
+
+            Console.WriteLine("selectMany-------------");
+
+
+            //string[] text = { "Albert was here", "Burke slept late", "Connor is happy" };
+            var tokenss = text.SelectMany(s => s.Split(' '));
+            foreach (string token in tokenss)
+                Console.WriteLine("{0}.", token);
         }
 
         public void ThreadTest()

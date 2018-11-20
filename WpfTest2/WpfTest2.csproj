@@ -96,6 +96,14 @@
     <Compile Include="Zindex\ZIndexTest.xaml.cs">
       <DependentUpon>ZIndexTest.xaml</DependentUpon>
     </Compile>
+    <Compile Include="常见控件的使用\SliderControl.xaml.cs">
+      <DependentUpon>SliderControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="转换器使用\Converts\StringConvert1.cs" />
+    <Compile Include="转换器使用\Entitys\PersonCC.cs" />
+    <Compile Include="转换器使用\Page1.xaml.cs">
+      <DependentUpon>Page1.xaml</DependentUpon>
+    </Compile>
     <Page Include="BindData\DataContextTest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -144,6 +152,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="常见控件的使用\SliderControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="转换器使用\Page1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\Annotations.cs" />
@@ -170,6 +186,9 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="列表样式-模板\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

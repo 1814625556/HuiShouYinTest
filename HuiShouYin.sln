@@ -37,6 +37,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wpfshutdownTest", "wpfshutd
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfStyleTemplate", "WpfApp2\WpfStyleTemplate.csproj", "{B7E5E5A4-1E13-44A2-859E-35F2E8223670}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestPrinter", "TestPrinter\TestPrinter.csproj", "{0B54D25E-1988-45A0-9148-722D4BD36997}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -179,6 +181,14 @@ Global
 		{B7E5E5A4-1E13-44A2-859E-35F2E8223670}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B7E5E5A4-1E13-44A2-859E-35F2E8223670}.Release|x86.ActiveCfg = Release|Any CPU
 		{B7E5E5A4-1E13-44A2-859E-35F2E8223670}.Release|x86.Build.0 = Release|Any CPU
+		{0B54D25E-1988-45A0-9148-722D4BD36997}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B54D25E-1988-45A0-9148-722D4BD36997}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B54D25E-1988-45A0-9148-722D4BD36997}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0B54D25E-1988-45A0-9148-722D4BD36997}.Debug|x86.Build.0 = Debug|Any CPU
+		{0B54D25E-1988-45A0-9148-722D4BD36997}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B54D25E-1988-45A0-9148-722D4BD36997}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B54D25E-1988-45A0-9148-722D4BD36997}.Release|x86.ActiveCfg = Release|Any CPU
+		{0B54D25E-1988-45A0-9148-722D4BD36997}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
