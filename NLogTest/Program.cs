@@ -10,6 +10,7 @@ namespace NLogTest
     {
         static void Main(string[] args)
         {
+            Console.WriteLine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData));
             //var config = new NLog.Config.LoggingConfiguration();
 
             //var logfile = new NLog.Targets.FileTarget("logfile") { FileName = "ccfile.txt" };
